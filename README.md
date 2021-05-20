@@ -19,6 +19,9 @@ On three distinct Ubuntu (`x86_64-linux`) machines, the above procedures
 produced the same ISO for me.
 
 ```bash
+# On one of the machines
+$ uname -a
+Linux syncom-cyberpower 5.4.0-73-generic #82~18.04.1-Ubuntu SMP Fri Apr 16 15:10:02 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 $ readlink -f result
 /nix/store/zpiscj1x68asg55zc9gbl2x5kz4hrg9a-nixos-21.05pre-git-x86_64-linux.iso
 $ sha256sum result/iso/nixos-21.05pre-git-x86_64-linux.iso
