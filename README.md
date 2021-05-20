@@ -6,7 +6,7 @@ Build custom nixOS ISO
 curl -L https://nixos.org/nix/install | sh
 git clone --depth 1 --branch syncom/deterministic-efiimg https://github.com/syncom/nixpkgs.git
 pushd nixpkgs
-git checkout e3cd6444584dc2d018a39ad7f94769caf043e621
+git checkout 657e924ad853e099cbc36be50478e9877aa05a25
 popd
 export NIX_PATH=nixpkgs=`pwd`/nixpkgs
 git clone https://github.com/syncom/custom_nixos_iso.git
@@ -15,17 +15,17 @@ git checkout b33fee2ae3eae23511692b6c031fab359ef0e773
 nix-build iso.nix
 ```
 
-On three distinct Ubuntu (`x86_64-linux`) machines, the above procedures
-produced the same ISO for me.
+On three distinct Ubuntu (`x86_64-linux`) machines, and one NixOS VM
+(corresponding to [this SHA256
+digest](https://releases.nixos.org/nixos/20.09/nixos-20.09.4154.33824cdf8e4/nixos-20.09.4154.33824cdf8e4-x86_64-linux.ova.sha256))
+the above procedures produced the same ISO for me.
 
 ```bash
-# On one of the machines
+# On one of the Ubuntu machines
 $ uname -a
 Linux syncom-cyberpower 5.4.0-73-generic #82~18.04.1-Ubuntu SMP Fri Apr 16 15:10:02 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
-$ readlink -f result
-/nix/store/zpiscj1x68asg55zc9gbl2x5kz4hrg9a-nixos-21.05pre-git-x86_64-linux.iso
-$ sha256sum result/iso/nixos-21.05pre-git-x86_64-linux.iso
-280e7ca8091744cebc38b49e69935f9c25b3e5fb7326eaedf0a21daf4736f445  result/iso/nixos-21.05pre-git-x86_64-linux.iso
+$ sha256sum $(readlink -f result)/iso/nixos-21.05pre-git-x86_64-linux.iso
+10b295f5126f990133cd97879d59c75354a8b86c912c77d0475c9c3ce8287ef8  /nix/store/avs706g4s16c7x0m3c2z99ix6l6v1l6a-nixos-21.05pre-git-x86_64-linux.iso/iso/nixos-21.05pre-git-x86_64-linux.iso
 ```
 
 ## References
