@@ -1,4 +1,4 @@
-# Example of custom nixOS ISO build
+# Example of deterministic custom nixOS ISO build
 
 Build custom nixOS ISO
 
