@@ -28,6 +28,26 @@ $ sha256sum $(readlink -f result)/iso/nixos-21.05pre-git-x86_64-linux.iso
 10b295f5126f990133cd97879d59c75354a8b86c912c77d0475c9c3ce8287ef8  /nix/store/avs706g4s16c7x0m3c2z99ix6l6v1l6a-nixos-21.05pre-git-x86_64-linux.iso/iso/nixos-21.05pre-git-x86_64-linux.iso
 ```
 
+## Build ISO in Docker
+
+The above deterministic ISO creation process can be automated using Docker.
+Run the following command in the repository root directory.
+
+```bash
+make iso
+```
+
+When we make the ISO at revision
+`115dc680cffbe9f358c6ad2b486f1c725addbdf8`, text like that shown below
+is expected in command output. The value for `IMAGE sha256sum` is
+critical to check for reproducibility.
+
+```text
+============ CUSTOM NIXOS ISO INFO ============
+ISO image created in /home/syncom/Development/custom_nixos_iso/out/custom_nixos_iso-115dc680cffbe9f358c6ad2b486f1c725addbdf8.iso
+IMAGE sha256sum: c38694f9284d1436b68f11ea9d1a4ba319544af715a81f5ace419cf0129fd134
+```
+
 ## References
 
 I've learned from the following resources:
