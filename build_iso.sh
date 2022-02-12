@@ -26,5 +26,5 @@ echo
 echo "============ CUSTOM NIXOS ISO INFO ============"
 echo "ISO image created in ${OUT_DIR}/${OUT_ISO_NAME}"
 echo -n "IMAGE sha256sum: "
-sha256sum "${OUT_DIR}/${OUT_ISO_NAME}" | cut -f1 -d' '
+shasum -a 256 "${OUT_DIR}/${OUT_ISO_NAME}" | cut -f1 -d' '
 echo
