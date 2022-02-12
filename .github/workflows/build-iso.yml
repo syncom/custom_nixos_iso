@@ -13,12 +13,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - name: "Checkout repository"
-      uses: actions/checkout@v2
-    - name: "Build ISO image"
-      run: |
-        cd ${{ github.workspace }}
-        ./build_iso.sh
+      - name: "Checkout repository"
+        uses: actions/checkout@v2
+      - name: "Install Docker"
+        if: ${{ matrix.os == 'macos-latest' }}
+        uses: docker-practice/actions-setup-docker@1.0.8
+      - name: "Build ISO image"
+        run: |
+          cd ${{ github.workspace }}
+          ./build_iso.sh
