@@ -1,0 +1,24 @@
+# Build reproducible custom ISO
+name: "Build Reproducible NixOS ISO"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-iso:
+    name: "Build ISO"
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: "Checkout repository"
+      uses: actions/checkout@v2
+    - name: "Build ISO image"
+      run: |
+        cd ${{ github.workspace }}
+        ./build_iso.sh
