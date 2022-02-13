@@ -5,13 +5,10 @@ FROM nixos/nix:2.3.11@sha256:6903aa8484f625a304961ef9166ea89954421888f6a59af0989
 # Step 1: Prepare nixpkgs for deterministic builds
 #########################################################
 WORKDIR /build
-# Note that this commit is tagged as 20.09 in nixpkgs
-ENV NIXPKGS_COMMIT_SHA="cd63096d6d887d689543a0b97743d28995bc9bc3"
-
-# Necessary patch for deterministic ISO build. This provides a workaround
-# until https://github.com/NixOS/nixpkgs/pull/119657 is included in a stable
-# nixpkgs release
-COPY nixpkgs.patch /build/nixpkgs.patch
+# Note that this commit is tagged as 21.11 in nixpkgs, which
+# include the determinism improvement
+# https://github.com/NixOS/nixpkgs/pull/119657
+ENV NIXPKGS_COMMIT_SHA="a7ecde854aee5c4c7cd6177f54a99d2c1ff28a31"
 
 RUN nix-env -i git && \
     mkdir -p /build/nixpkgs && \
@@ -20,7 +17,6 @@ RUN nix-env -i git && \
     git remote add origin https://github.com/NixOS/nixpkgs.git && \
     git fetch --depth 1 origin ${NIXPKGS_COMMIT_SHA} && \
     git checkout FETCH_HEAD && \
-    git apply ../nixpkgs.patch && \
     cd ../
 
 ENV NIX_PATH=nixpkgs=/build/nixpkgs
