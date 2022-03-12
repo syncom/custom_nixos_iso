@@ -48,6 +48,20 @@ ISO image created in /home/syncom/Development/custom_nixos_iso/out/custom_nixos_
 IMAGE sha256sum: c38694f9284d1436b68f11ea9d1a4ba319544af715a81f5ace419cf0129fd134
 ```
 
+## Clean up
+
+Clean up built ISO
+
+```bash
+make clean
+```
+
+Prune Docker resources (to save disk space, for example)
+
+```bash
+make dockerclean
+```
+
 ## References
 
 I've learned from the following resources:
