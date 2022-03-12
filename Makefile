@@ -8,3 +8,7 @@ iso:
 
 clean:
 	rm -rf $(mkfile_dir)/out
+
+# Prune everything
+dockerclean:
+	docker system prune -a -f
