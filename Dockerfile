@@ -10,6 +10,10 @@ WORKDIR /build
 # https://github.com/NixOS/nixpkgs/pull/119657
 ENV NIXPKGS_COMMIT_SHA="a7ecde854aee5c4c7cd6177f54a99d2c1ff28a31"
 
+# Apple M1 workaround
+COPY nix.conf /build/nix.conf
+ENV NIX_USER_CONF_FILES=/build/nix.conf
+
 RUN nix-env -i git && \
     mkdir -p /build/nixpkgs && \
     cd nixpkgs && \
