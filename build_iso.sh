@@ -13,7 +13,7 @@ BUILDER_TAG_NAME="nixos-builder:$REVISION"
 
 echo "Building custom ISO image"
 cd "${SCRIPT_DIR}"
-docker build -f "${SCRIPT_DIR}/Dockerfile" -t "${BUILDER_TAG_NAME}" .
+docker build --platform linux/amd64 -f "${SCRIPT_DIR}/Dockerfile" -t "${BUILDER_TAG_NAME}" .
 docker images "${BUILDER_TAG_NAME}"
 mkdir -p "${OUT_DIR}"
 

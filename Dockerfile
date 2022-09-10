@@ -1,5 +1,5 @@
 # The following information is from https://hub.docker.com/r/nixos/nix/tags
-FROM nixos/nix:2.3.11@sha256:6903aa8484f625a304961ef9166ea89954421888f6a59af09893b17630225710 as image_builder
+FROM nixos/nix:2.9.0@sha256:13b257cd42db29dc851f9818ea1bc2f9c7128c51fdf000971fa6058c66fbe4b6 as image_builder
 
 #########################################################
 # Step 1: Prepare nixpkgs for deterministic builds
