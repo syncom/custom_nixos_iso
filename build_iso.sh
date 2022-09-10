@@ -17,7 +17,7 @@ docker build --platform linux/amd64 -f "${SCRIPT_DIR}/Dockerfile" -t "${BUILDER_
 docker images "${BUILDER_TAG_NAME}"
 mkdir -p "${OUT_DIR}"
 
-docker run --entrypoint=/bin/sh --rm -i -v "${OUT_DIR}":/tmp/ \
+docker run --platform linux/amd64 --entrypoint=/bin/sh --rm -i -v "${OUT_DIR}":/tmp/ \
   "${BUILDER_TAG_NAME}" << CMD
 cp -Lr "/build/result/iso/${IN_ISO_NAME}" "/tmp/${OUT_ISO_NAME}"
 CMD
