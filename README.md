@@ -4,14 +4,16 @@ Build custom nixOS ISO
 
 ```bash
 curl -L https://nixos.org/nix/install | sh
-git clone --depth 1 --branch syncom/deterministic-efiimg https://github.com/syncom/nixpkgs.git
+git clone https://github.com/NixOS/nixpkgs.git
 pushd nixpkgs
-git checkout 657e924ad853e099cbc36be50478e9877aa05a25
+# This commit is tagged as 21.11 in nixpkgs, which includes the determinism
+# improvement https://github.com/NixOS/nixpkgs/pull/119657
+git checkout a7ecde854aee5c4c7cd6177f54a99d2c1ff28a31
 popd
-export NIX_PATH=nixpkgs=`pwd`/nixpkgs
+export NIX_PATH=nixpkgs=$(pwd)/nixpkgs
 git clone https://github.com/syncom/custom_nixos_iso.git
 cd custom_nixos_iso/
-git checkout b33fee2ae3eae23511692b6c031fab359ef0e773
+git checkout 817946610fd188a57c19e1983680cdaad3c35fa3
 nix-build iso.nix
 ```
 
@@ -23,9 +25,9 @@ the above procedures produced the same ISO for me.
 ```bash
 # On one of the Ubuntu machines
 $ uname -a
-Linux syncom-cyberpower 5.4.0-73-generic #82~18.04.1-Ubuntu SMP Fri Apr 16 15:10:02 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
-$ sha256sum $(readlink -f result)/iso/nixos-21.05pre-git-x86_64-linux.iso
-10b295f5126f990133cd97879d59c75354a8b86c912c77d0475c9c3ce8287ef8  /nix/store/avs706g4s16c7x0m3c2z99ix6l6v1l6a-nixos-21.05pre-git-x86_64-linux.iso/iso/nixos-21.05pre-git-x86_64-linux.iso
+Linux syncom-xps13 5.4.0-126-generic #142~18.04.1-Ubuntu SMP Thu Sep 1 16:25:16 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+$ sha256sum $(readlink -f result)/iso/*.iso
+5443e41acee9664e3b8dcc46e72bf54aec323457ec703aa7948d0c20f975ff5b  /nix/store/k4fa432jpfjs0wivi736dacs59jra466-nixos-21.11pre-git-x86_64-linux.iso/iso/nixos-21.11pre-git-x86_64-linux.iso
 ```
 
 ## Build ISO in Docker
@@ -38,14 +40,14 @@ make iso
 ```
 
 When we make the ISO at revision
-`115dc680cffbe9f358c6ad2b486f1c725addbdf8`, text like that shown below
+`817946610fd188a57c19e1983680cdaad3c35fa3`, text like that shown below
 is expected in command output. The value for `IMAGE sha256sum` is
 critical to check for reproducibility.
 
 ```text
 ============ CUSTOM NIXOS ISO INFO ============
-ISO image created in /home/syncom/Development/custom_nixos_iso/out/custom_nixos_iso-115dc680cffbe9f358c6ad2b486f1c725addbdf8.iso
-IMAGE sha256sum: c38694f9284d1436b68f11ea9d1a4ba319544af715a81f5ace419cf0129fd134
+ISO image created in /tmp/custom_nixos_iso/out/custom_nixos_iso-817946610fd188a57c19e1983680cdaad3c35fa3.iso
+IMAGE sha256sum: 5443e41acee9664e3b8dcc46e72bf54aec323457ec703aa7948d0c20f975ff5b
 ```
 
 ## Clean up
