@@ -6,7 +6,7 @@ FROM nixos/nix:2.9.0@sha256:13b257cd42db29dc851f9818ea1bc2f9c7128c51fdf000971fa6
 #########################################################
 WORKDIR /build
 # Note that this commit is tagged as 21.11 in nixpkgs, which
-# include the determinism improvement
+# includes the determinism improvement
 # https://github.com/NixOS/nixpkgs/pull/119657
 ENV NIXPKGS_COMMIT_SHA="a7ecde854aee5c4c7cd6177f54a99d2c1ff28a31"
 
