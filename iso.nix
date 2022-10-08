@@ -1,4 +1,4 @@
-{nixpkgs ? <nixpkgs>, system ? "x86_64-linux"}:
+{nixpkgs ? <nixpkgs>, system ? builtins.currentSystem}:
 
 let 
 hello_syncom = (import ./custom_configuration.nix {}).hello_syncom;
