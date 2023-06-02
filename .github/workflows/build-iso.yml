@@ -18,11 +18,8 @@ jobs:
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v2
-      #- name: "Install Docker"
-      #  if: ${{ matrix.os == 'macos-latest' }}
-      #  # 1.0.11
-      #  uses: docker-practice/actions-setup-docker@5d9a5f65f510c01ec5f0bd81d5c95768b1ec032a
       - name: "Build ISO image"
         run: |
+          set -euxo pipefail
           cd ${{ github.workspace }}
           ./build_iso.sh

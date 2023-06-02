@@ -1,6 +1,7 @@
-# Example of deterministic custom nixOS ISO build
+# Recipe for deterministic custom nixOS ISO builds
 
-Build custom nixOS ISO
+Build custom nixOS ISO (the ISO is "custom" in that it contains a custom package
+named "hello_syncom")
 
 ```bash
 curl -L https://nixos.org/nix/install | sh

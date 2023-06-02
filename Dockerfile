@@ -5,10 +5,10 @@ FROM nixos/nix:2.9.0@sha256:13b257cd42db29dc851f9818ea1bc2f9c7128c51fdf000971fa6
 # Step 1: Prepare nixpkgs for deterministic builds
 #########################################################
 WORKDIR /build
-# Note that this commit is tagged as 21.11 in nixpkgs, which
+# Note that this commit is tagged as 23.05 in nixpkgs, which
 # includes the determinism improvement
 # https://github.com/NixOS/nixpkgs/pull/119657
-ENV NIXPKGS_COMMIT_SHA="a7ecde854aee5c4c7cd6177f54a99d2c1ff28a31"
+ENV NIXPKGS_COMMIT_SHA="4ecab3273592f27479a583fb6d975d4aba3486fe"
 
 # Apple M1 workaround
 COPY nix.conf /build/nix.conf
