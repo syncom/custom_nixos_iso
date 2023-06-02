@@ -7,7 +7,7 @@ OUT_DIR="${SCRIPT_DIR}/out"
 REVISION=$(git --work-tree="${SCRIPT_DIR}/" \
   --git-dir="${SCRIPT_DIR}/.git" \
   rev-parse HEAD)
-IN_ISO_NAME="nixos-21.11pre-git-x86_64-linux.iso"
+IN_ISO_NAME="nixos-23.05pre-git-x86_64-linux.iso"
 OUT_ISO_NAME="custom_nixos_iso-${REVISION}.iso"
 BUILDER_TAG_NAME="nixos-builder:$REVISION"
 
