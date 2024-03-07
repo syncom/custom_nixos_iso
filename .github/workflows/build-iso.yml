@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: "Checkout repository"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.1
       - name: "Build ISO image"
         run: |
           set -euxo pipefail
